@@ -1,4 +1,5 @@
 bundle_cache: &bundle_cache
+  gem_update_script: gem update --system
   bundle_cache:
     folder: /usr/local/bundle
     fingerprint_script:
@@ -16,7 +17,6 @@ test_task:
       image: ruby:2.5
       image: ruby:2.4
   <<: *bundle_cache
-  gem_update_script: gem update --system
   environment:
     CODECOV_TOKEN: ENCRYPTED[b6e9001b278ce85b9a93a3ba280adce5a1523cfad2a9264d60a76f6338528045d350574065e6a8079fd5dfcb3ac4c656]
   test_script: bundle exec rake
