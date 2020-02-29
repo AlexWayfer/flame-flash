@@ -7,7 +7,7 @@ bundle_cache: &bundle_cache
       - ruby -v
       - cat Gemfile
       - cat *.gemspec
-    populate_script: bundle update
+  install_script: bundle update
 
 test_task:
   container:
