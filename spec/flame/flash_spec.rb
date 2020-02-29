@@ -13,8 +13,8 @@ describe Flame::Flash do
 			private
 
 			def server_error(exception)
-				p exception
-				puts exception.backtrace
+				# p exception
+				# puts exception.backtrace
 			end
 		end
 	end
