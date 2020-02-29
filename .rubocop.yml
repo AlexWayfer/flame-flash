@@ -1,3 +1,7 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
 Layout/Tab:
   Enabled: false
 Layout/IndentationWidth:
@@ -8,6 +12,19 @@ Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+
+RSpec/NestedGroups:
+  Max: 4
+RSpec/DescribeClass:
+  Exclude:
+    - spec/readme_spec.rb
 
 AllCops:
   TargetRubyVersion: 2.3

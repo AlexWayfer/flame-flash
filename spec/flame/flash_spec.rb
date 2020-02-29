@@ -4,8 +4,10 @@ describe Flame::Flash do
 	require 'rack/test'
 	include Rack::Test::Methods
 
-	module FlashTest
-		class Controller < Flame::Controller
+	subject { last_response.body }
+
+	let(:controller_class) do
+		Class.new(Flame::Controller) do
 			include Flame::Flash
 
 			private
@@ -15,8 +17,10 @@ describe Flame::Flash do
 				puts exception.backtrace
 			end
 		end
+	end
 
-		class MainController < Controller
+	let(:main_controller_class) do
+		Class.new(controller_class) do
 			def index
 				"params: #{params}, flashes: #{flash.now.to_a}"
 			end
@@ -78,8 +82,10 @@ describe Flame::Flash do
 				super
 			end
 		end
+	end
 
-		class ControllerWithParameter < Controller
+	let(:controller_with_parameter_class) do
+		Class.new(controller_class) do
 			def index
 				"params: #{params}, flashes: #{flash.now.to_a}"
 			end
@@ -88,140 +94,164 @@ describe Flame::Flash do
 				redirect :index, foo: 'bar', notice: 'Argument'
 			end
 		end
+	end
 
-		class Application < Flame::Application
-			mount MainController, '/'
-			mount ControllerWithParameter, '/controller_with_parameter/:?foo'
+	let(:app) do
+		main_controller_class = self.main_controller_class
+		controller_with_parameter_class = self.controller_with_parameter_class
+
+		Class.new(Flame::Application) do
+			mount main_controller_class, '/'
+			mount controller_with_parameter_class, '/controller_with_parameter/:?foo'
 		end
 	end
 
-	def app
-		FlashTest::Application
+	before do
+		get path
 	end
 
 	describe '#execute' do
-		it 'writes flashes in after-hook' do
-			get '/redirect_set_as_regular'
+		before do
 			follow_redirect!
-			expect(last_response.body).to eq(
-				'params: {}, flashes: [{:type=>:error, :text=>"Regular"}]'
-			)
 		end
+
+		let(:path) { '/redirect_set_as_regular' }
+		let(:expected_body) do
+			'params: {}, flashes: [{:type=>:error, :text=>"Regular"}]'
+		end
+
+		it { is_expected.to eq expected_body }
 	end
 
 	describe '#redirect' do
+		before do
+			follow_redirect!
+		end
+
 		context 'without parameters for action' do
-			it 'extract flashes from Hash argument' do
-				get '/redirect_set_as_argument'
-				follow_redirect!
-				expect(last_response.body).to eq(
-					'params: {}, flashes: [{:type=>:notice, :text=>"Argument"}]'
-				)
+			let(:path) { '/redirect_set_as_argument' }
+			let(:expected_body) do
+				'params: {}, flashes: [{:type=>:notice, :text=>"Argument"}]'
 			end
+
+			it { is_expected.to eq expected_body }
 		end
 
 		context 'with parameters for action' do
-			it 'extract flashes from Hash argument' do
-				get '/redirect_set_as_argument_with_parameters'
-				follow_redirect!
-				expect(last_response.body).to eq(
-					'id: 2, flashes: [{:type=>:notice, :text=>"Argument"}]'
-				)
+			let(:path) { '/redirect_set_as_argument_with_parameters' }
+			let(:expected_body) do
+				'id: 2, flashes: [{:type=>:notice, :text=>"Argument"}]'
 			end
+
+			it { is_expected.to eq expected_body }
 		end
 
 		context 'with parameters for controllers' do
-			it "doesn't extract controller's parameters as flashes" do
-				get '/controller_with_parameter/redirect_set_as_argument'
-				follow_redirect!
-				expect(last_response.body).to eq(
-					'params: {:foo=>"bar"},' \
-					' flashes: [{:type=>:notice, :text=>"Argument"}]'
-				)
+			let(:path) { '/controller_with_parameter/redirect_set_as_argument' }
+			let(:expected_body) do
+				'params: {:foo=>"bar"}, flashes: [{:type=>:notice, :text=>"Argument"}]'
 			end
+
+			it { is_expected.to eq expected_body }
 		end
 
 		context 'with params' do
-			it 'extract flashes from Hash argument' do
-				get '/redirect_set_as_argument_with_params'
-				follow_redirect!
-				expect(last_response.body).to eq(
-					'params: {:foo=>"bar"},' \
-					' flashes: [{:type=>:notice, :text=>"Argument"}]'
-				)
+			let(:path) { '/redirect_set_as_argument_with_params' }
+			let(:expected_body) do
+				'params: {:foo=>"bar"}, flashes: [{:type=>:notice, :text=>"Argument"}]'
 			end
+
+			it { is_expected.to eq expected_body }
 		end
 
-		context 'first argument is a String' do
-			it 'extract flashes from all keys of Hash argument' do
-				get '/redirect_set_as_argument_for_string'
-				follow_redirect!
-				expect(last_response.body).to eq(
-					'params: {}, flashes: [{:type=>:notice, :text=>"Argument"}]'
-				)
+		context 'when first argument is a String' do
+			let(:path) { '/redirect_set_as_argument_for_string' }
+			let(:expected_body) do
+				'params: {}, flashes: [{:type=>:notice, :text=>"Argument"}]'
 			end
+
+			it { is_expected.to eq expected_body }
 		end
 
-		it 'extract flashes from Hash at `flash` key' do
-			get '/redirect_set_as_flash_key'
-			follow_redirect!
-			expect(last_response.body).to eq(
+		context 'with flashes at `flash` key' do
+			let(:path) { '/redirect_set_as_flash_key' }
+			let(:expected_body) do
 				'params: {}, flashes: [{:type=>:foo, :text=>"bar"}]'
-			)
+			end
+
+			it { is_expected.to eq expected_body }
 		end
 	end
 
 	describe '#view' do
-		after do
-			expect(last_response.status).to eq 200
-		end
+		shared_examples 'correct status of last_response' do
+			describe 'status of last_response' do
+				subject { last_response.status }
 
-		context 'with writing current flashes as regular' do
-			it 'renders view with flashes' do
-				get '/view_set_as_regular'
-				expect(last_response.body).to eq(
-					'[{:type=>:error, :text=>"Regular"}]'
-				)
+				it { is_expected.to eq 200 }
 			end
 		end
 
-		it 'extract flashes from Hash argument' do
-			get '/view_set_as_argument'
-			expect(last_response.body).to eq(
-				'[{:type=>:notice, :text=>"Argument"}]'
-			)
+		context 'with writing current flashes as regular' do
+			let(:path) { '/view_set_as_regular' }
+			let(:expected_body) { '[{:type=>:error, :text=>"Regular"}]' }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
 		end
 
-		it 'extract flashes from Hash at `flash` key' do
-			get '/view_set_as_flash_key'
-			expect(last_response.body).to eq(
-				'[{:type=>:foo, :text=>"bar"}]'
-			)
+		context 'with flashes in Hash argument' do
+			let(:path) { '/view_set_as_argument' }
+			let(:expected_body) { '[{:type=>:notice, :text=>"Argument"}]' }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
 		end
 
-		it "doesn't break Flame::Controller#view without parameters" do
-			get '/view_without_parameters'
-			expect(last_response.body).to eq("I'm still alive!\n")
+		context 'with flashes in Hash at `flash` key' do
+			let(:path) { '/view_set_as_flash_key' }
+			let(:expected_body) { '[{:type=>:foo, :text=>"bar"}]' }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
+		end
+
+		describe '`Flame::Controller#view` without parameters' do
+			let(:path) { '/view_without_parameters' }
+			let(:expected_body) { "I'm still alive!\n" }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
 		end
 	end
 
 	describe '#halt' do
-		it 'writes flashes before halting' do
-			get '/halt_with_flashes'
+		before do
 			follow_redirect!
-			expect(last_response.body).to eq(
-				'params: {}, flashes: [{:type=>:notice, :text=>"Halted"}]'
-			)
 		end
+
+		let(:path) { '/halt_with_flashes' }
+		let(:expected_body) do
+			'params: {}, flashes: [{:type=>:notice, :text=>"Halted"}]'
+		end
+
+		it { is_expected.to eq expected_body }
 	end
 
 	describe 'flash.now.delete' do
-		it 'deletes flashes by type and text' do
-			get '/redirect_set_as_argument?delete=true'
+		before do
 			follow_redirect!
-			expect(last_response.body).to eq(
-				'params: {:delete=>"true"}, flashes: []'
-			)
 		end
+
+		let(:path) { '/redirect_set_as_argument?delete=true' }
+		let(:expected_body) do
+			'params: {:delete=>"true"}, flashes: []'
+		end
+
+		it { is_expected.to eq expected_body }
 	end
 end
