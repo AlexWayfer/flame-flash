@@ -19,15 +19,15 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency 'flame', '>= 5.0.0.rc3', '< 6'
 	s.add_runtime_dependency 'gorilla_patch', '>= 1', '< 4'
 
-	s.add_development_dependency 'codecov', '~> 0.1'
+	s.add_development_dependency 'codecov', '~> 0.1.0'
 	s.add_development_dependency 'pry-byebug', '~> 3.6'
 	s.add_development_dependency 'rack-test', '~> 1.0'
-	s.add_development_dependency 'rake', '~> 13'
+	s.add_development_dependency 'rake', '~> 13.0'
 	s.add_development_dependency 'rspec', '~> 3.7'
 	s.add_development_dependency 'rubocop', '~> 0.80.0'
 	s.add_development_dependency 'rubocop-performance', '~> 1.5'
 	s.add_development_dependency 'rubocop-rspec', '~> 1.38'
-	s.add_development_dependency 'simplecov', '~> 0.15'
+	s.add_development_dependency 'simplecov', '~> 0.15.0'
 
 	s.files = Dir[File.join('lib', '**', '*')]
 end
