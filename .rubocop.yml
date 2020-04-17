@@ -7,8 +7,8 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
-Layout/Tab:
-  Enabled: false
+Layout/IndentationStyle:
+  EnforcedStyle: tabs
 Layout/IndentationWidth:
   Width: 1
 Layout/MultilineMethodCallIndentation:
@@ -17,12 +17,16 @@ Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 
 Style/HashEachMethods:
   Enabled: true
 Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
+  Enabled: true
+Style/ExponentialNotation:
   Enabled: true
 
 RSpec/NestedGroups:
@@ -32,7 +36,7 @@ RSpec/DescribeClass:
     - spec/readme_spec.rb
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Metrics/BlockLength:
   Exclude:

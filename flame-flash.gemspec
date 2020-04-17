@@ -8,13 +8,17 @@ Gem::Specification.new do |s|
 	s.date        = Date.today.to_s
 
 	s.summary     = 'Flash plugin for Flame-framework'
-	s.description = 'Show messages (notifies, errors, warnings)' \
-	                ' in current or next routes after redirect.'
+
+	s.description = <<~TEXT
+		Show messages (notifies, errors, warnings) in current or next routes after redirect.
+	TEXT
 
 	s.authors     = ['Alexander Popov']
 	s.email       = ['alex.wayfer@gmail.com']
 	s.homepage    = 'https://github.com/AlexWayfer/flame-flash'
 	s.license     = 'MIT'
+
+	s.required_ruby_version = '~> 2.4'
 
 	s.add_runtime_dependency 'flame', '>= 5.0.0.rc3', '< 6'
 	s.add_runtime_dependency 'gorilla_patch', '>= 1', '< 4'
