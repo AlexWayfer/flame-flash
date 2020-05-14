@@ -19,6 +19,8 @@ Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
 
 Style/HashEachMethods:
   Enabled: true
@@ -27,6 +29,8 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 Style/ExponentialNotation:
+  Enabled: true
+Style/SlicingWithRange:
   Enabled: true
 
 RSpec/NestedGroups:
