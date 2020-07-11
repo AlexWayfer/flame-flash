@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency 'flame', '>= 5.0.0.rc3', '< 6'
 	s.add_runtime_dependency 'gorilla_patch', '>= 1', '< 5'
 
-	s.add_development_dependency 'codecov', '~> 0.1.0'
+	s.add_development_dependency 'codecov', '~> 0.2.0'
 	s.add_development_dependency 'pry-byebug', '~> 3.6'
 	s.add_development_dependency 'rack-test', '~> 1.0'
 	s.add_development_dependency 'rake', '~> 13.0'
