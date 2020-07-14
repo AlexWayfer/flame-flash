@@ -4,25 +4,40 @@ require:
 
 Layout/IndentationStyle:
   EnforcedStyle: tabs
+  IndentationWidth: 2
 Layout/IndentationWidth:
   Width: 1
+Layout/LineLength:
+  Max: 100
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
-
-RSpec/NestedGroups:
-  Max: 4
-RSpec/DescribeClass:
-  Exclude:
-    - spec/readme_spec.rb
-
-AllCops:
-  TargetRubyVersion: 2.4
-  NewCops: enable
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineArrayBraceLayout:
+  EnforcedStyle: new_line
+Layout/MultilineHashBraceLayout:
+  EnforcedStyle: new_line
 
 Metrics/BlockLength:
   Exclude:
-    - spec/**/*_spec.rb
+    - '*.gemspec'
+    - spec/**/*.rb
+
+AllCops:
+  TargetRubyVersion: 2.5
+  NewCops: enable
+
+RSpec/NestedGroups:
+  Max: 4
