@@ -26,7 +26,7 @@ describe Flame::Flash::FlashObject do
 
 		context 'with Array of texts' do
 			let(:session) do
-				[type: :error, text: ['invalid email', 'invalid password']]
+				[{ type: :error, text: ['invalid email', 'invalid password'] }]
 			end
 
 			let(:expected_now) do
@@ -93,7 +93,7 @@ describe Flame::Flash::FlashObject do
 			describe '#next' do
 				subject { super().next }
 
-				it { is_expected.to eq [type: :error, text: 'Failed'] }
+				it { is_expected.to eq [{ type: :error, text: 'Failed' }] }
 			end
 		end
 
@@ -110,7 +110,7 @@ describe Flame::Flash::FlashObject do
 			describe 'parent.next' do
 				subject { parent.next }
 
-				it { is_expected.to eq [type: :error, text: 'Failed', scope: :one] }
+				it { is_expected.to eq [{ type: :error, text: 'Failed', scope: :one }] }
 			end
 		end
 
