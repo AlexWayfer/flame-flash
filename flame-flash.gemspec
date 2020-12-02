@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
 	spec.add_development_dependency 'bundler', '~> 2.0'
 	spec.add_development_dependency 'gem_toys', '~> 0.5.0'
-	spec.add_development_dependency 'toys', '~> 0.10.4'
+	spec.add_development_dependency 'toys', '~> 0.11.4'
 
 	spec.add_development_dependency 'codecov', '~> 0.2.0'
 	spec.add_development_dependency 'rack-test', '~> 1.0'
