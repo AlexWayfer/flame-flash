@@ -48,12 +48,10 @@ module Flame
 		private
 
 		## Main helper method
-		def flash(key = nil)
-			(
-				@flash ||= FlashObject.new(
-					(session ? session[:flash] : [])
-				)
-			).scope(key)
+		def flash
+			@flash ||= FlashObject.new(
+				(session ? session[:flash] : [])
+			)
 		end
 
 		RESERVED_FLASH_KEYS = %i[error warning notice].freeze

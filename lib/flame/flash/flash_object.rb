@@ -9,24 +9,15 @@ module Flame
 		class FlashObject
 			attr_reader :now, :next
 
-			## Initialize Flash Object with specific session, parent and scope
-			def initialize(session, parent = nil, scope = nil)
+			## Initialize Flash Object with specific session
+			def initialize(session)
 				@now = FlashArray.new(session.to_a)
 				@next = FlashArray.new
-				@parent = parent || self
-				@scope = scope
-			end
-
-			## Return Flash Object at given scope
-			def scope(key = nil)
-				return self unless key
-
-				self.class.new(now.select(scope: key), self, key)
 			end
 
 			## Add entry with type and text
 			def []=(type, text)
-				@parent.next.push type, text, scope: (@scope if @parent != self)
+				self.next.push type, text
 			end
 
 			## Get entries by type

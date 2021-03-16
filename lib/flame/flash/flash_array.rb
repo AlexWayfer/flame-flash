@@ -16,14 +16,13 @@ module Flame
 				@array.each(&block)
 			end
 
-			## Write text by type into scope
-			def push(type, text, scope: nil)
+			## Write text by type
+			def push(type, text)
 				if text.is_a?(Enumerable)
-					text.each { |el| push(type, el, scope: scope) }
+					text.each { |el| push(type, el) }
 					return
 				end
 				hash = { type: type, text: text }
-				hash[:scope] = scope if scope
 				@array.push(hash)
 			end
 
@@ -34,7 +33,7 @@ module Flame
 				@array.delete(type: type, text: text)
 			end
 
-			## Select values by text, type or scope
+			## Select values by text or type
 			def select(**options)
 				@array.select do |hash|
 					options.reject { |key, val| hash[key] == val || val.nil? }.empty?
@@ -44,7 +43,7 @@ module Flame
 			## Concat with other Array-like
 			def concat(array)
 				array.each do |hash|
-					push(hash[:type], hash[:text], scope: hash[:scope])
+					push(hash[:type], hash[:text])
 				end
 			end
 
