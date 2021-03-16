@@ -11,11 +11,6 @@ module Flame
 				concat(array)
 			end
 
-			## Compare by with other object by internal Array
-			def ==(other)
-				other == @array
-			end
-
 			## Go through internal Array
 			def each(&block)
 				@array.each(&block)

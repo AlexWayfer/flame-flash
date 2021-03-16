@@ -59,8 +59,19 @@ describe Flame::Flash do
 				view :index
 			end
 
+			def view_by_specific_type
+				flash.now[:notice] = 'Hello'
+				flash.now[:error] = 'Wrong!'
+				flash.now[:warning] = 'Careful'
+				view :by_type, type: :error
+			end
+
 			def view_set_as_argument
 				view :index, notice: 'Argument'
+			end
+
+			def view_set_as_array_argument
+				view :index, notice: ['One argument', 'Another argument']
 			end
 
 			def view_set_as_flash_key
@@ -201,9 +212,29 @@ describe Flame::Flash do
 			include_examples 'correct status of last_response'
 		end
 
+		describe 'view by specific type' do
+			let(:path) { '/view_by_specific_type' }
+			let(:expected_body) { '["Wrong!"]' }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
+		end
+
 		context 'with flashes in Hash argument' do
 			let(:path) { '/view_set_as_argument' }
 			let(:expected_body) { '[{:type=>:notice, :text=>"Argument"}]' }
+
+			it { is_expected.to eq expected_body }
+
+			include_examples 'correct status of last_response'
+		end
+
+		context 'with flashes as Array in Hash argument' do
+			let(:path) { '/view_set_as_array_argument' }
+			let(:expected_body) do
+				'[{:type=>:notice, :text=>"One argument"}, {:type=>:notice, :text=>"Another argument"}]'
+			end
 
 			it { is_expected.to eq expected_body }
 

@@ -39,5 +39,7 @@ module Flame
 				hash.each { |type, text| self[type] = text }
 			end
 		end
+
+		private_constant :FlashObject
 	end
 end
