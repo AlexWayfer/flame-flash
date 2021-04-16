@@ -6,6 +6,7 @@ module Flame
 		## Just contains flashes
 		class FlashArray
 			## Initialize Flash Array from regular Array
+			## @param array [Array<Hash>] initial Array with raw data
 			def initialize(array = [])
 				@array = []
 				concat(array)

@@ -10,6 +10,7 @@ module Flame
 			attr_reader :now, :next
 
 			## Initialize Flash Object with specific session
+			## @param session [Rack::Session::Abstract::Persisted] Rack's session convertible to an Array
 			def initialize(session)
 				@now = FlashArray.new(session.to_a)
 				@next = FlashArray.new

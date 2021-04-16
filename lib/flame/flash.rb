@@ -41,7 +41,7 @@ module Flame
 			)
 		end
 
-		## Capture halt method
+		## Record flashes before halting
 		def halt(*args)
 			record_flashes
 			super
