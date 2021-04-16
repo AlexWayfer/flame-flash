@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'lib/flame/flash/version'
+
 Gem::Specification.new do |spec|
 	spec.name        = 'flame-flash'
-	spec.version     = '3.0.0'
+	spec.version     = Flame::Flash::VERSION
 
 	spec.summary     = 'Flash plugin for Flame-framework'
 

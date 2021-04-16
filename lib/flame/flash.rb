@@ -3,6 +3,8 @@
 require 'gorilla_patch/deep_dup'
 require 'gorilla_patch/slice'
 
+require_relative 'flash/version'
+
 require_relative 'flash/flash_object'
 
 module Flame
