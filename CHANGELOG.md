@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 3.0.1.rc1 (2021-04-16)
+
 *   Support Flame 5
 *   Forward flashes on redirect
 *   Replace `Array` check with `Enumerable`
@@ -12,14 +14,26 @@
 *   Add `FlashArray#delete` method
 *   Fix calls of redefined `view` without parameters
 *   Make `execute` and methods below `protected`
+*   Make `FlashObject` private, test `Flame::Flash` better.
+*   Remove `flash.scope` method.
+    It was taken not from Rails, but from (abandoned) `sinatra-flash`.
+    But we can add it later in more correct way if somebody's needing!
 *   Fix requiring by `path` in `Gemfile`
 *   Drop Ruby 2.3 and 2.4 support (after Flame)
+*   Support Ruby 3.
 *   Add MIT license file
 *   Add tests, 100% coverage
 *   Fix RuboCop warnings, and RuboCop configuration file
     With `rubocop-performance` and `rubocop-rspec`.
 *   Improve documentation of methods
 *   Add Cirrus CI
+*   Add `remark` CI task.
+*   Replace `rake` with `toys`.
+*   Update development dependencies.
+*   Add more meta-information to gem specs.
+*   Add "Development", "Contributing" and "License" sections to README.
+*   Add CHANGELOG file.
+*   Move gem version to a separate file (and constant).
 
 ## 2.3.3 (2016-11-16)
 
