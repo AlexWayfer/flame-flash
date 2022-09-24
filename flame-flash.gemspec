@@ -34,8 +34,8 @@ Gem::Specification.new do |spec|
 
 	spec.required_ruby_version = '>= 2.6', '< 4'
 
-	spec.add_runtime_dependency 'flame', '>= 5.0.0.rc6', '< 6'
-	spec.add_runtime_dependency 'gorilla_patch', '>= 1', '< 5'
+	spec.add_runtime_dependency 'flame', '>= 5.0.0.rc8', '< 6'
+	spec.add_runtime_dependency 'gorilla_patch', '>= 1', '< 6'
 
 	spec.add_development_dependency 'pry-byebug', '~> 3.9'
 
@@ -45,7 +45,7 @@ Gem::Specification.new do |spec|
 	spec.add_development_dependency 'gem_toys', '~> 0.11.0'
 	spec.add_development_dependency 'toys', '~> 0.12.0'
 
-	spec.add_development_dependency 'rack-test', '~> 1.0'
+	spec.add_development_dependency 'rack-test', '~> 2.0'
 	spec.add_development_dependency 'rspec', '~> 3.9'
 	spec.add_development_dependency 'simplecov', '~> 0.21.2'
 	spec.add_development_dependency 'simplecov-cobertura', '~> 1.4'
