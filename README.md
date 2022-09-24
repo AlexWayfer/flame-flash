@@ -5,8 +5,8 @@
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/AlexWayfer/flame-flash.svg?style=flat-square)](https://codeclimate.com/github/AlexWayfer/flame-flash)
 ![Depfu](https://img.shields.io/depfu/AlexWayfer/flame-flash?style=flat-square)
 [![Inline docs](https://inch-ci.org/github/AlexWayfer/flame-flash.svg?branch=main)](https://inch-ci.org/github/AlexWayfer/flame-flash)
-[![license](https://img.shields.io/github/license/AlexWayfer/flame-flash.svg?style=flat-square)](https://github.com/AlexWayfer/flame-flash/blob/main/LICENSE.txt)
 [![Gem](https://img.shields.io/gem/v/flame-flash.svg?style=flat-square)](https://rubygems.org/gems/flame-flash)
+[![License](https://img.shields.io/github/license/AlexWayfer/flame-flash.svg?style=flat-square)](LICENSE.txt)
 
 [Flashes](http://guides.rubyonrails.org/action_controller_overview.html#the-flash)
 for [Flame](https://github.com/AlexWayfer/flame).
