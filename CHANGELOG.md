@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 3.0.1.rc2 (2022-09-24)
+
+*   Drop Ruby 2.5 support.
+*   Add Ruby 3.1 support.
+*   Update dependencies, like Flame, Gorilla Patch, development ones.
+*   Update metadata in gemspec.
+*   Add `bundle-audit` CI task.
+
 ## 3.0.1.rc1 (2021-04-16)
 
 *   Support Flame 5
