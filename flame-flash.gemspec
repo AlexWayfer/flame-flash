@@ -34,8 +34,8 @@ Gem::Specification.new do |spec|
 
 	spec.required_ruby_version = '>= 2.6', '< 4'
 
-	spec.add_runtime_dependency 'flame', '>= 5.0.0.rc6', '< 6'
-	spec.add_runtime_dependency 'gorilla_patch', '>= 1', '< 5'
+	spec.add_runtime_dependency 'flame', '>= 5.0.0.rc8', '< 6'
+	spec.add_runtime_dependency 'gorilla_patch', '>= 1', '< 6'
 
 	spec.add_development_dependency 'pry-byebug', '~> 3.9'
 
