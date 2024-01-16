@@ -13,8 +13,8 @@ module Flame
 			end
 
 			## Go through internal Array
-			def each(&block)
-				@array.each(&block)
+			def each(...)
+				@array.each(...)
 			end
 
 			## Write text by type
