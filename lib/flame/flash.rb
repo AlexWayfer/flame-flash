@@ -25,7 +25,7 @@ module Flame
 			args, flashes = extract_flashes_for_redirect(args)
 			flash.merge flashes
 			flash.next.concat(flash.now) ## for multiple redirects
-			super(*args)
+			super
 		end
 
 		## Upgrade view method
