@@ -16,17 +16,26 @@ describe Flame::Flash do
 				# p exception
 				# puts exception.backtrace
 			end
+
+			def convert_flashes_to_string(flashes)
+				"[#{flashes.to_a.map { |hash| convert_hash_to_string(hash) }.join(', ')}]"
+			end
+
+			def convert_hash_to_string(hash)
+				"{#{hash.map { |key, value| "#{key.inspect}=>#{value.inspect}" }.join(', ')}}"
+			end
 		end
 	end
 
 	let(:main_controller_class) do
 		Class.new(controller_class) do
 			def index
-				"params: #{params}, flashes: #{flash.now.to_a}"
+				"params: #{convert_hash_to_string(params)}, " \
+					"flashes: #{convert_flashes_to_string(flash.now)}"
 			end
 
 			def show(id)
-				"id: #{id}, flashes: #{flash.now.to_a}"
+				"id: #{id}, flashes: #{convert_flashes_to_string(flash.now)}"
 			end
 
 			def redirect_set_as_regular
@@ -98,7 +107,8 @@ describe Flame::Flash do
 	let(:controller_with_parameter_class) do
 		Class.new(controller_class) do
 			def index
-				"params: #{params}, flashes: #{flash.now.to_a}"
+				"params: #{convert_hash_to_string(params)}, " \
+					"flashes: #{convert_flashes_to_string(flash.now)}"
 			end
 
 			def redirect_set_as_argument
