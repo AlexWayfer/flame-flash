@@ -2,6 +2,6 @@
 
 module Flame
 	module Flash
-		VERSION = '3.0.1.rc2'
+		VERSION = '3.0.1.rc3'
 	end
 end

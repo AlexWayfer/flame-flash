@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 3.0.1.rc3 (2025-01-05)
+
+*   Drop Ruby 2.6 and 2.7 support.
+*   Add Ruby 3.2, 3.3 and 3.4 support.
+*   Lock Ruby version more strict
+    There can be breaking changes in minor updates.
+*   Update development dependencies.
+*   Resolve new RuboCop offenses.
+*   Move development dependencies from `gemspec` into `Gemfile`.
+
 ## 3.0.1.rc2 (2022-09-24)
 
 *   Drop Ruby 2.5 support.
