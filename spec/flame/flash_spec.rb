@@ -15,14 +15,6 @@ describe Flame::Flash do
 			def server_error(exception)
 				# p exception
 				# puts exception.backtrace
-				@exception = exception
-				super
-			end
-
-			def default_body
-				render "errors/#{status}"
-			rescue Flame::Errors::TemplateNotFoundError
-				"<h1>#{super}</h1>"
 			end
 
 			def convert_flashes_to_string(flashes)
