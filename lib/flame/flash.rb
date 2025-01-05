@@ -35,7 +35,7 @@ module Flame
 			options, flashes = extract_flashes(options)
 			flash.now.merge flashes
 			super(
-				path || caller_locations(1, 1)[0].label.to_sym,
+				path || caller_locations(1, 1)[0].base_label.to_sym,
 				options,
 				&block
 			)

@@ -128,6 +128,9 @@ describe Flame::Flash do
 	end
 
 	before do
+		stub_const 'MainTestController', main_controller_class
+		stub_const 'ControllerWithParameter', controller_with_parameter_class
+
 		get path
 	end
 
