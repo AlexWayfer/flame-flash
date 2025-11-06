@@ -208,7 +208,7 @@ describe Flame::Flash do
 	end
 
 	describe '#view' do
-		shared_examples 'correct status of last_response' do
+		shared_examples 'a successful response' do
 			describe 'status of last_response' do
 				subject { last_response.status }
 
@@ -222,7 +222,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 
 		describe 'view by specific type' do
@@ -231,7 +231,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 
 		context 'with flashes in Hash argument' do
@@ -240,7 +240,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 
 		context 'with flashes as Array in Hash argument' do
@@ -251,7 +251,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 
 		context 'with flashes in Hash at `flash` key' do
@@ -260,7 +260,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 
 		describe '`Flame::Controller#view` without parameters' do
@@ -269,7 +269,7 @@ describe Flame::Flash do
 
 			it { is_expected.to eq expected_body }
 
-			include_examples 'correct status of last_response'
+			it_behaves_like 'a successful response'
 		end
 	end
 
