@@ -10,6 +10,8 @@ require_relative 'flash/flash_object'
 module Flame
 	# Module for Flame::Flash extension with helper methods and base class
 	module Flash
+		RESERVED_FLASH_KEYS = %i[error warning notice].freeze
+
 		protected
 
 		## After hook
@@ -55,8 +57,6 @@ module Flame
 				(session ? session[:flash] : [])
 			)
 		end
-
-		RESERVED_FLASH_KEYS = %i[error warning notice].freeze
 
 		using GorillaPatch::DeepDup
 		using GorillaPatch::Slice
