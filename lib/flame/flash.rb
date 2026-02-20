@@ -33,13 +33,13 @@ module Flame
 		## Upgrade view method
 		## @example Render view with error
 		##   view :show, error: 'Access required'
-		def view(path = nil, options = {}, &block)
+		def view(path = nil, options = {}, &)
 			options, flashes = extract_flashes(options)
 			flash.now.merge flashes
 			super(
 				path || caller_locations(1, 1)[0].base_label.to_sym,
 				options,
-				&block
+				&
 			)
 		end
 
