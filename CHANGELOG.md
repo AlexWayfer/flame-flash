@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 3.0.1 (2026-02-20)
+
+*   Drop Ruby 3.0 and 3.1 support.
+*   Add Ruby 4.0 support.
+*   Update runtime dependencies.
+*   Update development dependencies.
+*   Resolve new RuboCop offenses.
+*   Improve CI config.
+
 ## 3.0.1.rc3 (2025-01-05)
 
 *   Drop Ruby 2.6 and 2.7 support.
