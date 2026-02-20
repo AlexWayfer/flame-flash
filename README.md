@@ -2,7 +2,6 @@
 
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/AlexWayfer/flame-flash?style=flat-square)](https://cirrus-ci.com/github/AlexWayfer/flame-flash)
 [![Codecov branch](https://img.shields.io/codecov/c/github/AlexWayfer/flame-flash/main.svg?style=flat-square)](https://codecov.io/gh/AlexWayfer/flame-flash)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/AlexWayfer/flame-flash.svg?style=flat-square)](https://codeclimate.com/github/AlexWayfer/flame-flash)
 ![Depfu](https://img.shields.io/depfu/AlexWayfer/flame-flash?style=flat-square)
 [![Inline docs](https://inch-ci.org/github/AlexWayfer/flame-flash.svg?branch=main)](https://inch-ci.org/github/AlexWayfer/flame-flash)
 [![Gem](https://img.shields.io/gem/v/flame-flash.svg?style=flat-square)](https://rubygems.org/gems/flame-flash)
