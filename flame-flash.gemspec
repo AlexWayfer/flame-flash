@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
 
 	spec.required_ruby_version = '>= 3.2', '< 3.5'
 
-	spec.add_dependency 'flame', '>= 5.0.0.rc8', '< 6'
-	spec.add_dependency 'gorilla_patch', '>= 1', '< 6'
+	spec.add_dependency 'flame', '~> 5.0'
+	spec.add_dependency 'gorilla_patch', '~> 6.0'
 end
